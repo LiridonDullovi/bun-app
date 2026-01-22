@@ -21,4 +21,4 @@ bun start
 
 This project was created using `bun init` in bun v1.3.6. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
 
-Link to blog post [Blog](https://me.lrdnd.com/bunjs-lets-continue-our-journey/)
+Link to blog post [Blog](https://me.lrdnd.com/bunjs-building-post-pages-with-bun-react-before-adding-a-database/)
