@@ -4,7 +4,6 @@ import { PostController } from "@/controllers/PostController";
 import type { BunRequest } from "bun";
 
 export const routes = {
-    "/*": index,
     "/api/hello": {
         async GET() {
             return Response.json({
@@ -43,4 +42,5 @@ export const routes = {
         PUT: (new PostController()).updatePost,
         DELETE: (new PostController()).deletePost,
     },
+    "/*": index,
 };
