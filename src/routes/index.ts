@@ -1,5 +1,5 @@
 import index from "../index.html";
-import { userController } from "../controllers/UserController";
+import { userController } from "@/controllers/UserController";
 import { postController } from "@/controllers/PostController";
 import type { BunRequest } from "bun";
 
