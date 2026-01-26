@@ -73,8 +73,8 @@ export default function ListPosts () {
                                     </ItemTitle>
                                     <ItemDescription>{post.description}</ItemDescription>
                                 </ItemContent>
-                                <ItemContent className="flex-none text-center">
-                                    <ItemDescription>{post.duration}</ItemDescription>
+                                <ItemContent className="flex-none text-center items-end">
+                                    <ItemDescription>{post.duration} min</ItemDescription>
                                     <Button onClick={(e) => deletePost(post.id, e)} type="button" variant="destructive">
                                         Delete
                                     </Button>
