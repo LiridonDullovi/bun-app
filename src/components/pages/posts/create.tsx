@@ -19,13 +19,15 @@ export default function CreatePosts () {
             const method = 'POST';
             const title = formData.get("title") as string;
             const description = formData.get("description") as string;
+            const author = formData.get("author") as string;
+            const duration = formData.get("duration") as string;
 
             const res = await fetch(url, { 
                 method, 
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({title, description})
+                body: JSON.stringify({title, description, author, duration}),
             });
 
             const data = await res.json();
@@ -49,11 +51,19 @@ export default function CreatePosts () {
                     <Label htmlFor="title" className="sr-only">
                         Title
                     </Label>
-                    <Input id="title" type="text" name="title" placeholder="Lorem Ipsum" />
+                    <Input id="title" type="text" name="title" placeholder="Post title" />
                     <Label htmlFor="description" className="sr-only">
                         Description
                     </Label>
                     <Textarea id="description" name="description" placeholder="Post description..." />
+                    <Label htmlFor="author" className="sr-only">
+                        Author
+                    </Label>
+                    <Input id="author" type="text" name="author" placeholder="Author name" />
+                    <Label htmlFor="duration" className="sr-only">
+                        Duration
+                    </Label>
+                    <Input id="duration" type="text" name="duration" placeholder="Duration in minutes" />
                     <Button type="submit" variant="default">
                         Create
                     </Button>

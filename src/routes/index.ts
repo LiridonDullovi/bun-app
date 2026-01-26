@@ -1,6 +1,6 @@
 import index from "../index.html";
-import { UserController } from "../controllers/UserController";
-import { PostController } from "@/controllers/PostController";
+import { userController } from "@/controllers/UserController";
+import { postController } from "@/controllers/PostController";
 import type { BunRequest } from "bun";
 
 export const routes = {
@@ -25,22 +25,22 @@ export const routes = {
         });
     },
     "/api/users": {
-        GET: (new UserController()).index,
+        GET: userController.index,
     },
     "/api/users/:id": {
-        GET: (new UserController()).getUser,
-        POST: (new UserController()).createUser,
-        PUT: (new UserController()).updateUser,
-        DELETE: (new UserController()).deleteUser,
+        GET: userController.getUser,
+        POST: userController.createUser,
+        PUT: userController.updateUser,
+        DELETE: userController.deleteUser,
     },
     "/api/posts": {
-        GET: (new PostController()).index,
+        GET: postController.index,
     },
     "/api/posts/:id": {
-        GET: (new PostController()).getPost,
-        POST: (new PostController()).createPost,
-        PUT: (new PostController()).updatePost,
-        DELETE: (new PostController()).deletePost,
+        GET: postController.getPost,
+        POST: postController.createPost,
+        PUT: postController.updatePost,
+        DELETE: postController.deletePost,
     },
     "/*": index,
 };

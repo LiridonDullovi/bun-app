@@ -33,13 +33,15 @@ export default function EditPost () {
             const method = 'PUT';
             const title = formData.get("title") as string;
             const description = formData.get("description") as string;
+            const author = formData.get("author") as string;
+            const duration = formData.get("duration") as string;
 
             const res = await fetch(url, { 
                 method, 
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({title, description})
+                body: JSON.stringify({title, description, author, duration}),
             });
             const data = await res.json();
             setEditedPost(data);
@@ -67,6 +69,14 @@ export default function EditPost () {
                         Description
                     </Label>
                     <Textarea id="description" name="description" placeholder="Post description..." defaultValue={post?.description} />
+                    <Label htmlFor="author" className="sr-only">
+                        Author
+                    </Label>
+                    <Input id="author" type="text" name="author" placeholder="Author name" defaultValue={post?.author} />
+                    <Label htmlFor="duration" className="sr-only">
+                        Duration
+                    </Label>
+                    <Input id="duration" type="text" name="duration" placeholder="Duration in minutes" defaultValue={post?.duration} />
                     <Button type="submit" variant="default">
                         Edit
                     </Button>
