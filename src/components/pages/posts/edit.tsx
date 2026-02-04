@@ -7,8 +7,10 @@ import { useState, useEffect, type FormEvent } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { useParams } from "react-router-dom";
 import type { Post, PostData } from "@/types";
+import { authFetch, requireAuth } from "@/lib/auth";
 
 export default function EditPost () {
+    requireAuth();
     const id = useParams().id;
     const [post, setPost] = useState<Post | null>(null);
     const [editedPost, setEditedPost] = useState<PostData | null>(null);
@@ -33,15 +35,14 @@ export default function EditPost () {
             const method = 'PUT';
             const title = formData.get("title") as string;
             const description = formData.get("description") as string;
-            const author = formData.get("author") as string;
             const duration = formData.get("duration") as string;
 
-            const res = await fetch(url, { 
+            const res = await authFetch(url, { 
                 method, 
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({title, description, author, duration}),
+                body: JSON.stringify({title, description, duration}),
             });
             const data = await res.json();
             setEditedPost(data);
@@ -61,24 +62,20 @@ export default function EditPost () {
             </CardHeader>
             <CardContent>
                 <form onSubmit={editPost} className="flex flex-col items-start gap-2">
-                    <Label htmlFor="title" className="sr-only">
+                    <Label htmlFor="title">
                         Title
                     </Label>
                     <Input id="title" type="text" name="title" placeholder="Lorem Ipsum" defaultValue={post?.title} />
-                    <Label htmlFor="description" className="sr-only">
+                    <Label htmlFor="description">
                         Description
                     </Label>
                     <Textarea id="description" name="description" placeholder="Post description..." defaultValue={post?.description} />
-                    <Label htmlFor="author" className="sr-only">
-                        Author
-                    </Label>
-                    <Input id="author" type="text" name="author" placeholder="Author name" defaultValue={post?.author} />
-                    <Label htmlFor="duration" className="sr-only">
+                    <Label htmlFor="duration">
                         Duration
                     </Label>
-                    <Input id="duration" type="text" name="duration" placeholder="Duration in minutes" defaultValue={post?.duration} />
+                    <Input id="duration" type="number" name="duration" placeholder="Duration in minutes" defaultValue={post?.duration} />
                     <Button type="submit" variant="default">
-                        Edit
+                        Save
                     </Button>
                 </form>
                 {editedPost && (

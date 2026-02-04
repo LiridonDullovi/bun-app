@@ -24,6 +24,9 @@ export const routes = {
             message: `Hello, ${name}!`,
         });
     },
+    "/api/auth/login": {
+        POST: userController.loginUser,
+    },
     "/api/users": {
         GET: userController.index,
     },
