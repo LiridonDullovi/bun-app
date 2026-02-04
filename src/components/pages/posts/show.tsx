@@ -4,10 +4,11 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import type { PostData } from "@/types";
+import { isAuthenticated, isAuthorized } from "@/lib/auth";
 
 export default function ShowPost () {
     const { id } = useParams();
-    const  [ post_data, setPostData ] =  useState<PostData | null>(null);
+    const [ post_data, setPostData ] =  useState<PostData | null>(null);
 
     useEffect(() => {
         async function fetchPosts() {
@@ -25,11 +26,13 @@ export default function ShowPost () {
                     <div className="flex justify-between">
                         <CardTitle className="text-3xl font-bold">{post_data?.post?.title ?? 'Not Found'}</CardTitle>
                         <div className="flex gap-4">
-                            <Button asChild variant="outline">
-                                <Link to={`/posts/${id}/edit`}>
-                                Edit
-                                </Link>
-                            </Button>
+                            {isAuthenticated() && isAuthorized(post_data?.post?.author ?? '') && (
+                                <Button asChild variant="outline">
+                                    <Link to={`/posts/${id}/edit`}>
+                                    Edit
+                                    </Link>
+                                </Button>
+                            )}
                         </div>
                     </div>
                     <CardDescription>

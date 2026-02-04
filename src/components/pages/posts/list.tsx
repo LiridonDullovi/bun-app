@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import type { PostListData } from "@/types";
+import { isAuthenticated, isAuthorized } from "@/lib/auth";
 
 export default function ListPosts () {
     const [ post_data, setPostData ] =  useState<PostListData | null>();
@@ -69,15 +70,17 @@ export default function ListPosts () {
                                 <ItemContent>
                                     <ItemTitle className="line-clamp-1">
                                     {post.title} -{" "}
-                                    <span className="text-muted-foreground">{post.author}</span>
+                                    <span className="text-muted-foreground">{post.author_name ?? post.author} {post.author_email && `(${post.author_email})`}</span>
                                     </ItemTitle>
                                     <ItemDescription>{post.description}</ItemDescription>
                                 </ItemContent>
                                 <ItemContent className="flex-none text-center items-end">
                                     <ItemDescription>{post.duration} min</ItemDescription>
-                                    <Button onClick={(e) => deletePost(post.id, e)} type="button" variant="destructive">
-                                        Delete
-                                    </Button>
+                                    {isAuthenticated() && isAuthorized(post.author) && (
+                                        <Button onClick={(e) => deletePost(post.id, e)} type="button" variant="destructive">
+                                            Delete
+                                        </Button>
+                                    )}
                                 </ItemContent>
                             </Link>
                         </Item>
