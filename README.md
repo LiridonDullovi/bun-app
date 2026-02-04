@@ -19,7 +19,7 @@ To run for production:
 bun start
 ```
 
-To run database creation:
+To run database and table creation:
 
 ```bash
 bun database
@@ -27,4 +27,4 @@ bun database
 
 This project was created using `bun init` in bun v1.3.6. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
 
-Link to blog post [Blog](https://me.lrdnd.com/bunjs-building-post-pages-with-bun-react-before-adding-a-database/)
+Link to blog post [Blog](https://me.lrdnd.com/bunjs-adding-jwt-authentication/)
