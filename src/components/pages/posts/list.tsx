@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import type { PostListData } from "@/types";
-import { isAuthenticated, isAuthorized } from "@/lib/auth";
+import { authFetch, isAuthenticated, isAuthorized } from "@/lib/auth";
 
 export default function ListPosts () {
     const [ post_data, setPostData ] =  useState<PostListData | null>();
@@ -34,7 +34,7 @@ export default function ListPosts () {
             const url = new URL(endpoint, location.href);
             const method = 'DELETE';
 
-            const res = await fetch(url, { method });
+            const res = await authFetch(url, { method });
             const data = await res.json();
             
             // Remove the deleted post from the state

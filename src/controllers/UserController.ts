@@ -13,11 +13,7 @@ class UserController {
     }
 
     index(): Response {
-        const users = [
-            {id: 1, name: "Alice"},
-            {id: 2, name: "Bob"},
-            {id: 3, name: "Charlie"},
-        ]
+        const users = this.db.query("select * from users").all();
         return Response.json({message: "User index", users});
     }
 
@@ -42,7 +38,7 @@ class UserController {
         }
 
         const token = await signAccessToken({
-            sub: user.id,
+            sub: user.id.toString(),
             email: user.email,
         });
 

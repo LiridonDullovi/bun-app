@@ -3,14 +3,11 @@ import { Card, CardContent, CardDescription,  CardHeader, CardTitle } from "@/co
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { setToken } from "@/lib/token"
-import { useNavigate } from "react-router"
 
 export default function Login() {
-    const navigate = useNavigate();
     
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Implement login logic here
         
         try {
             const form = e.currentTarget;

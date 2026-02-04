@@ -1,5 +1,9 @@
 import { SignJWT, jwtVerify } from "jose";
 
+if (!Bun.env.JWT_SECRET) {
+  throw new Error("JWT_SECRET is not defined");
+}
+
 const secret = new TextEncoder().encode(Bun.env.JWT_SECRET);
 
 export async function signAccessToken(payload: Record<string, any>) {

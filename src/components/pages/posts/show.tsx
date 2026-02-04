@@ -36,7 +36,7 @@ export default function ShowPost () {
                         </div>
                     </div>
                     <CardDescription>
-                        {post_data?.post?.author ?? 'Unknown Author' } - {post_data?.post?.duration ?? 'N/A'}
+                        {post_data?.post?.author_name ?? post_data?.post?.author ?? 'Unknown Author'} - {post_data?.post?.duration ?? 'N/A'} minutes read
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
